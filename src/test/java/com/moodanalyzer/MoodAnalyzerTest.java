@@ -12,7 +12,17 @@ public class MoodAnalyzerTest {
         try {
             moodAnalyzer.analyseMood();
         } catch (MoodAnalyzerException e) {
-            Assert.assertEquals("Please enter proper message", e.getMessage());
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.ENTERED_NULL, e.type);
+        }
+    }
+
+    @Test
+    public void givenEmptyMoodShouldThrowException() {
+        MoodAnalyzer moodAnalyzer = new MoodAnalyzer("");
+        try {
+            moodAnalyzer.analyseMood();
+        } catch (MoodAnalyzerException e) {
+            Assert.assertEquals(MoodAnalyzerException.ExceptionType.ENTERED_EMPTY, e.type);
         }
     }
 }
